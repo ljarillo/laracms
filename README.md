@@ -1,2 +1,2 @@
-# laracms
+# LaraCMS
 CMS em Laravel
