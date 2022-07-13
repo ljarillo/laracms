@@ -1,2 +1,2 @@
 # LaraCMS
-CMS em Laravel
+Sistema de gestão de conteúdos (CMS) desenvolvido utilizando o Framework PHP Laravel
