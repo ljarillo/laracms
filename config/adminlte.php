@@ -236,11 +236,20 @@ return [
             'topnav_right' => true,
         ],
 
+
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        [
+            'text' => 'Planos',
+            'url'  => 'admin/plans',
+            'icon' => 'fa-regular fa-money-check-dollar-pen'
+        ],
+
+        // Sidebar items exemple:
+        ['header' => 'exemple'],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
