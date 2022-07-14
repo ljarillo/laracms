@@ -17,7 +17,9 @@
     </div>
 @stop
 
+
 @section('content')
+    @include('admin.includes.alerts')
     <form action="{{ route('plans.store') }}" class="form" method="POST">
     <div class="row">
         <div class="col-md-12">
@@ -25,7 +27,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Informações Gerais</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse" data-dashlane-rid="4eeb03f980ef5a97" data-dashlane-label="true" data-form-type="other">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>

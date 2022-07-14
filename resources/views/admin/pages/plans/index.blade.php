@@ -16,7 +16,9 @@
     </div>
 @stop
 
+
 @section('content')
+    @include('admin.includes.alerts')
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary card-outline">
@@ -60,8 +62,13 @@
                                 <td>{{ $plan->name }}</td>
                                 <td>R$ {{ number_format($plan->price, 2, ',', '.') }}</td>
                                 <td class="project-actions text-right">
+                                    <a class="btn btn-default btn-sm" href="{{ route('details.index', $plan->url) }}">
+                                        <i class="fa fa-book">
+                                        </i>
+                                        Detalhes
+                                    </a>
                                     <a class="btn btn-primary btn-sm" href="{{ route('plans.show', $plan->url) }}">
-                                        <i class="fas fa-folder">
+                                        <i class="fas fa-eye">
                                         </i>
                                         Ver
                                     </a>

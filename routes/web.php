@@ -9,6 +9,11 @@ Route::prefix('admin')
     ->group(function (){
 
         /**
+         *  Rotas de Detalhes do Plano
+         */
+        Route::resource('plans/{url}/details', 'DetailPlanController');
+
+        /**
          *  Rotas de Planos
          */
         Route::any('plans/search', 'PlanController@search')->name('plans.search');

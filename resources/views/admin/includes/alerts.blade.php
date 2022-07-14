@@ -5,3 +5,17 @@
         @endforeach
     </div>
 @endif
+
+@if(session('message'))
+{{--    https://getbootstrap.com/docs/4.3/components/toasts/--}}
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
+
+@if(session('error'))
+    {{--    https://getbootstrap.com/docs/4.3/components/toasts/--}}
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
