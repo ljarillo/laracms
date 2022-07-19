@@ -9,6 +9,12 @@ Route::prefix('admin')
     ->group(function (){
 
         /**
+         *  Rotas de Profiles
+         */
+        Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+        Route::resource('profiles', 'ACL\ProfileController');
+
+        /**
          *  Rotas de Detalhes do Plano
          */
         Route::resource('plans/{url}/details', 'DetailPlanController');

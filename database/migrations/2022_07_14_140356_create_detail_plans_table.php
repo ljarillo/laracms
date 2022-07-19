@@ -17,6 +17,7 @@ class CreateDetailPlansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('plan_id');
             $table->string('name');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('plan_id')
