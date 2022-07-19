@@ -245,7 +245,7 @@ return [
         [
             'text' => 'Planos',
             'url'  => 'admin/plans',
-            'icon' => 'fa-regular fa-money-check-dollar-pen'
+            'icon' => 'fas fa-scroll',
         ],
         [
             'text'  => 'Perfis',

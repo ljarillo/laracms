@@ -13,6 +13,13 @@
     </div>
 @endif
 
+@if(session('warning'))
+    {{--    https://getbootstrap.com/docs/4.3/components/toasts/--}}
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
+
 @if(session('error'))
     {{--    https://getbootstrap.com/docs/4.3/components/toasts/--}}
     <div class="alert alert-danger">

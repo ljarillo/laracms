@@ -1,16 +1,19 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões')
+@section('title', "Permissões disponíveis Perfil {$profile->name}")
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Permissões <a href="{{ route('permissions.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a></h1>
+            <h1 class="m-0">Permissões disponíveis Perfil <strong>{{$profile->name}}</strong></h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Permissões</li>
+                <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Perfis</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('profiles.permissions', $profile->id) }}">Permissões do Perfil {{ $profile->name }}</a></li>
+                <li class="breadcrumb-item active">Permissões disponíveis Perfil</li>
+                <li class="breadcrumb-item active">{{ $profile->name }}</li>
             </ol>
         </div>
     </div>
@@ -25,14 +28,14 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8">
-                            @if(isset($filters))
+                            @if(!empty($filters))
                                 <div class="alert alert-light" role="alert">
-                                    A busca por <strong>{{ $filters['filter'] }}</strong> encontrou <strong>{{ $permissions->count() }}</strong> resultado{{ $permissions->count() == 1 ? '' : 's' }}. <a href="{{ route('permissions.index') }}" class="btn btn-default"><i class="fa fa-ban"></i></a>
+                                    A busca por <strong>{{ $filters['filter'] }}</strong> encontrou <strong>{{ $permissions->count() }}</strong> resultado{{ $permissions->count() == 1 ? '' : 's' }}. <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-default"><i class="fa fa-ban"></i></a>
                                 </div>
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <form action="{{ route('permissions.search') }}" method="POST" class="form form-inline float-right">
+                            <form action="{{ route('profiles.permissions.available', $profile->id) }}" method="POST" class="form form-inline float-right">
                                 @csrf
                                 <div class="input-group">
                                     <input type="search" class="form-control" name="filter" value="{{ $filters['filter'] ?? '' }}">
@@ -51,32 +54,22 @@
                     <table class="table table-condensed">
                         <thead>
                         <tr>
+                            <th class="text-center" style="width: 10%">#</th>
                             <th>Nome</th>
-                            <th style="width: 20%">Ações</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($permissions as $permission)
-                            <tr>
-                                <td>{{ $permission->name }}</td>
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-default btn-sm" href="{{ route('permissions.profiles', $permission->id) }}">
-                                        <i class="fas fa-address-book">
-                                        </i>
-                                    </a>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('permissions.show', $permission->id) }}">
-                                        <i class="fas fa-eye">
-                                        </i>
-                                        Ver
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="{{ route('permissions.edit', $permission->id) }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Editar
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        <form action="{{ route('profiles.permissions.attach', $profile->id) }}" id="myForm" method="POST">
+                            @csrf
+                            @foreach($permissions as $permission)
+                                <tr>
+                                    <td class="project-actions text-center">
+                                        <input type="checkbox" id="permission-{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}">
+                                    </td>
+                                    <td><label for="permission-{{ $permission->id }}">{{ $permission->name }}</label></td>
+                                </tr>
+                            @endforeach
+                        </form>
                         </tbody>
                     </table>
                     <div class="row">
@@ -93,6 +86,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-secondary"><i class="fa fa-times"></i> Fechar</a>
+            <button type="button" class="btn btn-success float-right" onclick="document.getElementById('myForm').submit()">
+                <i class="fa fa-save"></i> Gravar
+            </button>
         </div>
     </div>
 @stop

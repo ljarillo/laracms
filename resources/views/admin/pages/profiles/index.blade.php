@@ -60,11 +60,10 @@
                             <tr>
                                 <td>{{ $profile->name }}</td>
                                 <td class="project-actions text-right">
-{{--                                    <a class="btn btn-default btn-sm" href="{{ route('details.index', $profile->id) }}">--}}
-{{--                                        <i class="fa fa-book">--}}
-{{--                                        </i>--}}
-{{--                                        Detalhes--}}
-{{--                                    </a>--}}
+                                    <a class="btn btn-default btn-sm" href="{{ route('profiles.permissions', $profile->id) }}">
+                                        <i class="fas fa-lock">
+                                        </i>
+                                    </a>
                                     <a class="btn btn-primary btn-sm" href="{{ route('profiles.show', $profile->id) }}">
                                         <i class="fas fa-eye">
                                         </i>
