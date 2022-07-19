@@ -5,13 +5,13 @@
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Plano</h1>
+            <h1 class="m-0">Detalhes do Plano</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
-                <li class="breadcrumb-item active">Plano</li>
+                <li class="breadcrumb-item active">Detalhes do Plano</li>
                 <li class="breadcrumb-item active">{{ $plan->name }}</li>
             </ol>
         </div>
