@@ -1,19 +1,19 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões disponíveis Perfil {$profile->name}")
+@section('title', "Perfis disponíveis para o Plano {$plan->name}")
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Permissões disponíveis Perfil <strong>{{$profile->name}}</strong></h1>
+            <h1 class="m-0">Perfis disponíveis para o Plano <strong>{{$plan->name}}</strong></h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Perfis</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('profiles.profiles', $profile->id) }}">Permissões do Perfil {{ $profile->name }}</a></li>
-                <li class="breadcrumb-item active">Permissões disponíveis Perfil</li>
-                <li class="breadcrumb-item active">{{ $profile->name }}</li>
+                <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('plans.profiles', $plan->id) }}">Perfis do Plano {{ $plan->name }}</a></li>
+                <li class="breadcrumb-item active">Perfis disponíveis para o Plano</li>
+                <li class="breadcrumb-item active">{{ $plan->name }}</li>
             </ol>
         </div>
     </div>
@@ -30,12 +30,12 @@
                         <div class="col-md-8">
                             @if(!empty($filters))
                                 <div class="alert alert-light" role="alert">
-                                    A busca por <strong>{{ $filters['filter'] }}</strong> encontrou <strong>{{ $permissions->count() }}</strong> resultado{{ $permissions->count() == 1 ? '' : 's' }}. <a href="{{ route('profiles.profiles.available', $profile->id) }}" class="btn btn-default"><i class="fa fa-ban"></i></a>
+                                    A busca por <strong>{{ $filters['filter'] }}</strong> encontrou <strong>{{ $profiles->count() }}</strong> resultado{{ $profiles->count() == 1 ? '' : 's' }}. <a href="{{ route('plans.profiles.available', $plan->id) }}" class="btn btn-default"><i class="fa fa-ban"></i></a>
                                 </div>
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <form action="{{ route('profiles.profiles.available', $profile->id) }}" method="POST" class="form form-inline float-right">
+                            <form action="{{ route('plans.profiles.available', $plan->id) }}" method="POST" class="form form-inline float-right">
                                 @csrf
                                 <div class="input-group">
                                     <input type="search" class="form-control" name="filter" value="{{ $filters['filter'] ?? '' }}">
@@ -59,14 +59,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="{{ route('profiles.profiles.attach', $profile->id) }}" id="myForm" method="POST">
+                        <form action="{{ route('plans.profiles.attach', $plan->id) }}" id="myForm" method="POST">
                             @csrf
-                            @foreach($permissions as $permission)
+                            @foreach($profiles as $profile)
                                 <tr>
                                     <td class="project-actions text-center">
-                                        <input type="checkbox" id="permission-{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}">
+                                        <input type="checkbox" id="profile-{{ $profile->id }}" name="profiles[]" value="{{ $profile->id }}">
                                     </td>
-                                    <td><label for="permission-{{ $permission->id }}">{{ $permission->name }}</label></td>
+                                    <td><label for="profile-{{ $profile->id }}">{{ $profile->name }}</label></td>
                                 </tr>
                             @endforeach
                         </form>
@@ -76,9 +76,9 @@
                         <div class="col-md-12">
                             <div class="text-center">
                                 @if(isset($filters))
-                                    {!! $permissions->appends($filters)->links() !!}
+                                    {!! $profiles->appends($filters)->links() !!}
                                 @else()
-                                    {!! $permissions->links() !!}
+                                    {!! $profiles->links() !!}
                                 @endif
 
                             </div>
@@ -90,7 +90,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="{{ route('profiles.profiles', $profile->id) }}" class="btn btn-secondary"><i class="fa fa-times"></i> Fechar</a>
+            <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-secondary"><i class="fa fa-times"></i> Fechar</a>
             <button type="button" class="btn btn-success float-right" onclick="document.getElementById('myForm').submit()">
                 <i class="fa fa-save"></i> Gravar
             </button>

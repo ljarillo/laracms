@@ -20,19 +20,27 @@ class Profile extends Model
     }
 
     /**
+     * Get Plans
+     */
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class);
+    }
+
+    /**
      * @param $filter
      * @return mixed
      */
     public function permissionsAvailable($filter = null)
     {
-        $permissions = Permission::whereNotIn('permissions.id', function ($query){
+        $permissions = Permission::whereNotIn('profiles.id', function ($query){
             $query->select('permission_profile.permission_id');
             $query->from('permission_profile');
             $query->whereRaw("permission_profile.profile_id={$this->id}");
         })
             ->where(function ($queryFilter) use ($filter){
                 if($filter)
-                    $queryFilter->where('permissions.name', 'LIKE', "%{$filter}%");
+                    $queryFilter->where('profiles.name', 'LIKE', "%{$filter}%");
             })
             ->paginate();
 

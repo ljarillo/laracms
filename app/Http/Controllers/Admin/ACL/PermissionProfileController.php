@@ -35,9 +35,9 @@ class PermissionProfileController extends Controller
 
         $permissions = $profile->permissions()->paginate();
 
-        return view('admin.pages.profiles.permissions.permissions', [
+        return view('admin.pages.profiles.profiles.profiles', [
             'profile' => $profile,
-            'permissions' => $permissions
+            'profiles' => $permissions
         ]);
     }
 
@@ -53,7 +53,7 @@ class PermissionProfileController extends Controller
 
         $profiles = $permission->profiles()->paginate();
 
-        return view('admin.pages.permissions.profiles.profiles', [
+        return view('admin.pages.profiles.profiles.profiles', [
             'permission' => $permission,
             'profiles' => $profiles
         ]);
@@ -73,9 +73,9 @@ class PermissionProfileController extends Controller
         $filters = $request->except('_token');
         $permissions = $profile->permissionsAvailable($request->filter);
 
-        return view('admin.pages.profiles.permissions.available', [
+        return view('admin.pages.profiles.profiles.available', [
             'profile' => $profile,
-            'permissions' => $permissions,
+            'profiles' => $permissions,
             'filters' => $filters
         ]);
     }
@@ -100,7 +100,7 @@ class PermissionProfileController extends Controller
         $profile->permissions()->attach($request->permissions);
 
         return redirect()
-            ->route('profiles.permissions', $profile->id)
+            ->route('profiles.profiles', $profile->id)
             ->with('message', 'Atribuida as permissões com sucesso');
     }
 
@@ -120,7 +120,7 @@ class PermissionProfileController extends Controller
         $profile->permissions()->detach($permission);
 
         return redirect()
-            ->route('profiles.permissions', $profile->id)
+            ->route('profiles.profiles', $profile->id)
             ->with('message', "Desvinculada a permissão {$permission->name} do perfil {$profile->name}");
     }
 }

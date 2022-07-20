@@ -60,7 +60,11 @@
                             <tr>
                                 <td>{{ $profile->name }}</td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-default btn-sm" href="{{ route('profiles.permissions', $profile->id) }}">
+                                    <a class="btn btn-default btn-sm" href="{{ route('plans.profiles', $profile->id) }}">
+                                        <i class="fas fa-scroll">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-default btn-sm" href="{{ route('profiles.profiles', $profile->id) }}">
                                         <i class="fas fa-lock">
                                         </i>
                                     </a>

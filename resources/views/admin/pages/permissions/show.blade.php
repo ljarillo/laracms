@@ -10,7 +10,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}">Permissões</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Permissões</a></li>
                 <li class="breadcrumb-item active">Detalhes da Permissão</li>
                 <li class="breadcrumb-item active">{{ $permission->name }}</li>
             </ol>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST">
+                    <form action="{{ route('profiles.destroy', $permission->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">

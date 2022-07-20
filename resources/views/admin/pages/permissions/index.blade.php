@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Permissões <a href="{{ route('permissions.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a></h1>
+            <h1 class="m-0">Permissões <a href="{{ route('profiles.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a></h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,12 +27,12 @@
                         <div class="col-md-8">
                             @if(isset($filters))
                                 <div class="alert alert-light" role="alert">
-                                    A busca por <strong>{{ $filters['filter'] }}</strong> encontrou <strong>{{ $permissions->count() }}</strong> resultado{{ $permissions->count() == 1 ? '' : 's' }}. <a href="{{ route('permissions.index') }}" class="btn btn-default"><i class="fa fa-ban"></i></a>
+                                    A busca por <strong>{{ $filters['filter'] }}</strong> encontrou <strong>{{ $permissions->count() }}</strong> resultado{{ $permissions->count() == 1 ? '' : 's' }}. <a href="{{ route('profiles.index') }}" class="btn btn-default"><i class="fa fa-ban"></i></a>
                                 </div>
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <form action="{{ route('permissions.search') }}" method="POST" class="form form-inline float-right">
+                            <form action="{{ route('profiles.search') }}" method="POST" class="form form-inline float-right">
                                 @csrf
                                 <div class="input-group">
                                     <input type="search" class="form-control" name="filter" value="{{ $filters['filter'] ?? '' }}">
@@ -60,16 +60,16 @@
                             <tr>
                                 <td>{{ $permission->name }}</td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-default btn-sm" href="{{ route('permissions.profiles', $permission->id) }}">
+                                    <a class="btn btn-default btn-sm" href="{{ route('profiles.profiles', $permission->id) }}">
                                         <i class="fas fa-address-book">
                                         </i>
                                     </a>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('permissions.show', $permission->id) }}">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('profiles.show', $permission->id) }}">
                                         <i class="fas fa-eye">
                                         </i>
                                         Ver
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="{{ route('permissions.edit', $permission->id) }}">
+                                    <a class="btn btn-info btn-sm" href="{{ route('profiles.edit', $permission->id) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Editar

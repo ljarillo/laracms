@@ -10,7 +10,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}">Permissões</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Permissões</a></li>
                 <li class="breadcrumb-item active">Perfis da Permissão</li>
                 <li class="breadcrumb-item active">{{ $permission->name }}</li>
             </ol>
@@ -62,7 +62,7 @@
                             <tr>
                                 <td>{{ $profile->name }}</td>
                                 <td class="project-actions text-right">
-                                    <a href="{{ route('profiles.permissions.detach', [$profile->id, $permission->id]) }}" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('profiles.profiles.detach', [$profile->id, $permission->id]) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-times"></i>
                                     </a>
                                 </td>

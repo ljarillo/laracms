@@ -18,7 +18,7 @@ class PermissionController extends Controller
     {
         $this->repository = $permission;
 
-//        $this->middleware(['can:permissions']);
+//        $this->middleware(['can:profiles']);
     }
 
 
@@ -29,8 +29,8 @@ class PermissionController extends Controller
     {
         $permissions = $this->repository->latest()->paginate();
 
-        return view('admin.pages.permissions.index', [
-            'permissions' => $permissions
+        return view('admin.pages.profiles.index', [
+            'profiles' => $permissions
         ]);
     }
 
@@ -39,7 +39,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.permissions.create');
+        return view('admin.pages.profiles.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class PermissionController extends Controller
     {
         $this->repository->create($request->all());
         return redirect()
-            ->route('permissions.index')
+            ->route('profiles.index')
             ->with('message', 'Permissão inserida com sucesso');
     }
 
@@ -64,7 +64,7 @@ class PermissionController extends Controller
             return redirect()->back();
         }
 
-        return view('admin.pages.permissions.show', ['permission' => $permission]);
+        return view('admin.pages.profiles.show', ['permission' => $permission]);
     }
 
     /**
@@ -77,7 +77,7 @@ class PermissionController extends Controller
             return redirect()->back();
         }
 
-        return view('admin.pages.permissions.edit', ['permission' => $permission]);
+        return view('admin.pages.profiles.edit', ['permission' => $permission]);
     }
 
     /**
@@ -94,7 +94,7 @@ class PermissionController extends Controller
         $permission->update($request->all());
 
         return redirect()
-            ->route('permissions.index')
+            ->route('profiles.index')
             ->with('message', 'Permissão alterada com sucesso');
     }
 
@@ -111,7 +111,7 @@ class PermissionController extends Controller
         $permission->delete();
 
         return redirect()
-            ->route('permissions.index')
+            ->route('profiles.index')
             ->with('message', 'Permissão deletada com sucesso');
     }
 
@@ -124,8 +124,8 @@ class PermissionController extends Controller
         $filters = $request->except('_token');
         $permissions = $this->repository->search($request->filter);
 
-        return view('admin.pages.permissions.index', [
-            'permissions' => $permissions,
+        return view('admin.pages.profiles.index', [
+            'profiles' => $permissions,
             'filters' => $filters
         ]);
     }

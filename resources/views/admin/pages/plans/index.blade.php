@@ -62,6 +62,10 @@
                                 <td>{{ $plan->name }}</td>
                                 <td>R$ {{ number_format($plan->price, 2, ',', '.') }}</td>
                                 <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('plans.profiles', $plan->id) }}">
+                                        <i class="fas fa-address-book">
+                                        </i>
+                                    </a>
                                     <a class="btn btn-default btn-sm" href="{{ route('details.index', $plan->url) }}">
                                         <i class="fa fa-book">
                                         </i>
